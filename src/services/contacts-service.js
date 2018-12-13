@@ -1,13 +1,11 @@
-import axios from 'axios'
+//import axios from 'axios'
+
+import http from './http-service'
 
 class ContactsService {
-    constructor() {
-        axios.defaults.baseURL='http://localhost:8000/api/'
-        axios.defaults.headers.common['Accept'] = 'application/json' //da nam vrati json format
-    }
 //page nam je parametar a 1 nam je difoltna vrednost
     getContacts(page = 1) {
-        return axios.get('contacts', {params: { page }})
+        return http.get('contacts', {params: { page }})  //ovde get iz http umesto axios
             .then(({ data }) => data) //raspakovali response i uzeli podatke kao i response.data {je destruktor} 
     }
 }
