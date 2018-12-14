@@ -1,7 +1,7 @@
 <template>
     <form 
         class="form-signin"
-        @submit.prevent="login"    
+        @submit.prevent="submitForm"    
     >
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     name: 'Login',
 
@@ -40,8 +42,12 @@ export default {
     },
 
     methods: {
-        login() {
+
+        ...mapActions(['login']),
+
+        submitForm() {
             // console.log({ email: this.email, password: this.password })
+            this.login({ email: this.email, password: this.password, nextRouteName: 'home' })  //payload mora biti objekat zato je pisano ovako
         }
     }
 }
